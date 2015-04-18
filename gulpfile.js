@@ -3,9 +3,17 @@ var sass = require('gulp-sass');
 var uglify = require('gulp-uglifyjs');
 var rename = require('gulp-rename');
 var watch = require('gulp-watch');
+var karma = require('gulp-karma');
  
 gulp.task('default', function() {
-  console.log('Running Gulp');
+	console.log('');
+  console.log('--- Iduna Gulp Tasks ---');
+  console.log('gulp build     - Compiles Sass & Javascript into dist folder');
+  console.log('gulp sass      - Compiles Sass files into dist folder');
+  console.log('gulp js        - Compiles Javascript files into dist folder');
+  console.log('gulp watch     - Compiles Sass/Javascript & Watch files for changes');
+  console.log('gulp test      - Starts running Karma/Jasmine Tests');
+  console.log('');
 });
 
 gulp.task('build', function() {
@@ -35,4 +43,9 @@ gulp.task('watch', function() {
 		gulp.start('sass');
 		gulp.start('js');
 	});
+});
+
+gulp.task('test', function() {
+	return gulp.src('./src/js/*.js')
+    .pipe(karma());
 });
