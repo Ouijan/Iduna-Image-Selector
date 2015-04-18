@@ -17,7 +17,7 @@ var iduna = (function () {
 		}
 
 		// Build each Image Selector and append to collection
-  	_.each($(this.settings['selector']), function(input) {
+  	_.each( $(this.settings['selector']), function(input) {
   		this.selectors.push( new Selector($(input)) );
   	}, this);
 

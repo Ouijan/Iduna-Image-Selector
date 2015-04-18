@@ -6,13 +6,13 @@ Given an array of images and their values, Iduna will transform the input elemen
 Comming Soon...
 
 ## Gulp Commands
-gulp build     - Compiles Sass & Javascript into dist folder
-gulp sass      - Compiles Sass files into dist folder
-gulp js        - Compiles Javascript files into dist folder
-gulp watch     - Compiles Sass/Javascript & Watch files for changes
-gulp test      - Starts running Karma/Jasmine Tests
+ - gulp build			- Compiles Sass & Javascript into dist folder
+ - gulp sass 			- Compiles Sass files into dist folder
+ - gulp js 				- Compiles Javascript files into dist folder
+ - gulp watch 		- Compiles Sass/Javascript & Watch files for changes
+ - gulp test 			- Starts running Karma/Jasmine Tests
 
 ## To Do
- - Finish Setting Up Test Framework
  - Transfer old code to new iduna files & clean up
- - 
+ - Write tests
+ - Style

@@ -46,6 +46,9 @@ gulp.task('watch', function() {
 });
 
 gulp.task('test', function() {
-	return gulp.src('./src/js/*.js')
-    .pipe(karma());
+	return gulp.src('./test/**/*.spec.js')
+    .pipe(karma({
+      configFile: 'karma.conf.js',
+      action: 'watch'
+    }));
 });
