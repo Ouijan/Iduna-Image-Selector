@@ -46,7 +46,13 @@ gulp.task('watch', function() {
 });
 
 gulp.task('test', function() {
-	return gulp.src('./test/**/*.spec.js')
+  var testFiles = [
+    'node_modules/underscore/underscore-min.js',
+    'node_modules/jquery/dist/jquery.min.js',
+    'src/js/*.js',
+    'test/**/*.spec.js',
+  ];
+	return gulp.src(testFiles)
     .pipe(karma({
       configFile: 'karma.conf.js',
       action: 'watch'

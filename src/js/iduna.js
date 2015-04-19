@@ -21,8 +21,6 @@ var iduna = (function () {
   		this.selectors.push( new Selector($(input)) );
   	}, this);
 
-		console.log(this);
-
 		return this;
 	}
 
