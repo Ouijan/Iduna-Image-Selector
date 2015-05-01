@@ -11,7 +11,7 @@ Comming Soon...
  - gulp build			- Compiles Sass & Javascript into dist folder
  - gulp sass 			- Compiles Sass files into dist folder
  - gulp js 				- Compiles Javascript files into dist folder
- - gulp watch 		- Compiles Sass/Javascript & Watch files for changes
+ - gulp serve 		- Starts a Live Reloading Server and watches files for changes
  - gulp test 			- Starts running Karma/Jasmine Tests
 
 ## To Do

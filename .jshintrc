@@ -31,6 +31,7 @@
     "expect"               : true,
     "it"                   : true,
     "jasmine"              : true,
-    "_"                    : true
+    "_"                    : true,
+    "iduna"                : true
   }
 }
