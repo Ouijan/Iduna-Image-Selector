@@ -1,25 +1,22 @@
-(function (iduna) {
+(function (Iduna) {
 	'use strict';
 
 	describe("Iduna", function() {
 
 	  it("exists on global scope", function() {
-	  	expect(iduna).not.toBeUndefined();
+	  	expect(Iduna).not.toBeUndefined();
 	  });
 
 	  it("has init method", function() {
-	  	expect(iduna.init()).not.toBeUndefined();
+	  	expect(Iduna.init()).not.toBeUndefined();
 	  });
 
 	  it("has settings prpoerty", function() {
-	  	expect(iduna.settings).not.toBeUndefined();
+	  	expect(Iduna.settings).not.toBeUndefined();
 	  });
-	  
-	  
-
-
+	  	
 
 
 	});
 
-}(iduna));
+}(Iduna));

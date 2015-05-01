@@ -11,6 +11,7 @@
 <body>
   <h1>Iduna Image Selector</h1>
 
+  <!--
 	<input type="text" class="iduna" name="images" multiple 
 					data-images='[
 						{"id": 1, "url": "img/placeholder.jpg"},
@@ -24,16 +25,34 @@
 						{"id": 9, "url": "img/placeholder.jpg"},
 						{"id": 10, "url": "img/placeholder.jpg"}
 					]'>
-					
+	-->
+
+	<!-- Multiple Select -->				
+	<select class="iduna" name="images">
+	  <option value="1">img/placeholder.jpg</option>
+	  <option value="2">img/placeholder.jpg</option>
+	  <option value="3">img/placeholder.jpg</option>
+	  <option value="4">img/placeholder.jpg</option>
+	  <option value="5">img/placeholder.jpg</option>
+	  <option value="6">img/placeholder.jpg</option>
+	  <option value="7">img/placeholder.jpg</option>
+	  <option value="8">img/placeholder.jpg</option>
+	  <option value="9">img/placeholder.jpg</option>
+	  <option value="10">img/placeholder.jpg</option>
+	</select>
 
   <script src="node_modules/jquery/dist/jquery.min.js"></script>
   <script src="node_modules/underscore/underscore-min.js"></script>
-  <script src="dist/iduna.min.js"></script>
+  <script src="dist/iduna.js"></script>
   <script>
-	  iduna.init({
+	  Iduna.init({
 	  	cats: 'good',
 	  	dogs: 'mk',
 	  });
+
+	  console.log('---------IDUNA---------');
+	  console.log(Iduna);
+	  console.log('-----------------------');
   </script>
 
 </body>

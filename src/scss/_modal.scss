@@ -1,0 +1,35 @@
+// Modal Wrap
+.idunaModal {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: rgba(0,0,0,0.5);
+
+	// Modal Pane
+	.idunaModal-pane {
+		margin: 20px;
+		background-color: #efefef;
+		border: 1px solid #cccccc;
+		padding: 10px;
+
+		// Header
+		.idunaModal-header {
+			border-bottom: 1px solid #cccccc;
+			padding: 5px;
+		}
+
+		// Body
+		.idunaModal-body {
+			padding: 10px 5px;
+		}
+
+		// Footer
+		.idunaModal-footer {
+			padding: 5px;
+			border-top: 1px solid #cccccc;
+		}
+
+	}
+}
