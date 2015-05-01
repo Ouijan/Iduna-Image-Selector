@@ -1,10 +1,10 @@
-var Iduna = (function () {
+var iduna = (function () {
 	'use strict';
 
 	var iduna = {};
 
 	iduna.selectors = [];
-	iduna.settings = {}
+	iduna.settings = {};
 
 	iduna.init = function (settings) {
 		// Set settings
@@ -23,8 +23,7 @@ var Iduna = (function () {
 		this.modal = new Modal();
 
 		return this;
-	}
-
+	};
 
 	/**
 	 * Selector Object
@@ -47,7 +46,7 @@ var Iduna = (function () {
 
 		this.elements = renderSelector(this);
 		console.log(this);
-	}
+	};
 
 	/**
 	 * Show/Hide the selector
@@ -89,7 +88,7 @@ var Iduna = (function () {
 
 
 		this.hide();
-	}
+	};
 
 	Modal.prototype.hide = function () {
 		$(this.elements.wrap).addClass('hidden');
@@ -130,7 +129,7 @@ var Iduna = (function () {
 		});
 
 		return data;
-	}
+	};
 
 	/**
 	 * renders the selector and returns its elements
@@ -155,7 +154,7 @@ var Iduna = (function () {
 		});
 
 		return elements;
-	}
+	};
 
 
 
