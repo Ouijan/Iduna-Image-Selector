@@ -1,8 +1,12 @@
+'use strict';
+
 var gulp = require('gulp');
 var sass = require('gulp-sass');
 var watch = require('gulp-watch');
 var karma = require('gulp-karma');
 var notify = require('gulp-notify');
+var browserSync = require('browser-sync').create();
+var reload = browserSync.reload;
  
 gulp.task('default', function() {
 	console.log('');
@@ -10,7 +14,7 @@ gulp.task('default', function() {
   console.log('gulp build     - Compiles Sass & Javascript into dist folder');
   console.log('gulp sass      - Compiles Sass files into dist folder');
   console.log('gulp js        - Compiles Javascript files into dist folder');
-  console.log('gulp watch     - Compiles Sass/Javascript & Watch files for changes');
+  console.log('gulp serve     - Starts a node live reloading node server');
   console.log('gulp test      - Starts running Karma/Jasmine Tests');
   console.log('');
 });
@@ -29,17 +33,22 @@ gulp.task('sass', function () {
         },
       }))
     .pipe(gulp.dest('./dist'))
+    .pipe(reload({stream: true}));
 });
 
 gulp.task('js', function() {
   return gulp.src('./src/js/*.js')
-    .pipe(gulp.dest('./dist'));
+    .pipe(gulp.dest('./dist'))
+    .pipe(reload({stream: true}));
 });
 
-gulp.task('watch', function() {
+gulp.task('serve', function() {
+  browserSync.init({
+    server: "./"
+  });
 	gulp.start('sass');
 	gulp.start('js');
-	return watch('./src/**/*', function() {
+	return watch(['./index.html', './src/**/*'], function() {
 		gulp.start('sass');
 		gulp.start('js');
 	});

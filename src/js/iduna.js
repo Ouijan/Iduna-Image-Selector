@@ -6,7 +6,7 @@ var iduna = (function () {
 	iduna.selectors = [];
 	iduna.settings = {};
 
-	iduna.init = function (settings) {
+	iduna.init = function (settings) { 
 		// Set settings
 		if (settings !== undefined) {
 			_.each(settings, function(value, key) {
