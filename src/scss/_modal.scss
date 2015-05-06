@@ -4,31 +4,81 @@
 	top: 0;
 	left: 0;
 	right: 0;
-	bottom: 0;
 	background-color: rgba(0,0,0,0.5);
+	height: 100%;
 
 	// Modal Pane
 	.idunaModal-pane {
 		margin: 20px;
+		outline: 1px solid #aaaaaa;
 		background-color: #efefef;
-		border: 1px solid #cccccc;
-		padding: 10px;
+		height: 80%;
+		position: relative;
+		padding: 40px 0;
 
 		// Header
 		.idunaModal-header {
 			border-bottom: 1px solid #cccccc;
-			padding: 5px;
+			min-height: 30px;
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			background-color: inherit;
+			padding: 10px;
+			z-index: 9999;
+
+			h3 {
+				padding: 0;
+				margin: 0;
+			}
+
+			.idunaModal-exit {
+				position: absolute;
+				right: 0;
+				top: 0;
+				width: 30px;
+				height: 30px;
+				outline: 1px solid #cccccc;
+				cursor: pointer;
+			}
 		}
 
 		// Body
 		.idunaModal-body {
-			padding: 10px 5px;
+			line-height: 0px;
+			position: absolute;
+			top: 50px;
+			bottom: 50px;
+			left: 0;
+			right: 0;
+			overflow: scroll;
+			z-index: 100;
+
+			.idunaModal-image {
+				display: inline-block;
+				width: 50%;
+
+				&.selected {
+					outline: 2px solid #333;
+					z-index: 9999;
+					position: relative;
+				}
+			}
 		}
 
 		// Footer
 		.idunaModal-footer {
-			padding: 5px;
 			border-top: 1px solid #cccccc;
+			min-height: 30px;
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			background-color: inherit;
+			text-align: right;
+			padding: 10px;
+			z-index: 9999;
 		}
 
 	}
