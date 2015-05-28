@@ -14,6 +14,17 @@
 	display: none;
 }
 
-.idunaPreview-image {
-	height: 100px;
+.idunaWrap {
+	margin-top: 1em;
+}
+
+.iduna-preview {
+	display: block;
+	min-height: 100px;
+	outline: 1px solid #111;
+
+	.idunaPreview-image {
+		width: 20%;
+		vertical-align: text-top;
+	}
 }

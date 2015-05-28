@@ -15,10 +15,12 @@ Comming Soon...
  - gulp test 			- Starts running Karma/Jasmine Tests
 
 ## To Do
- - Write tests
- - Style
-  - Exit Icon
- - Add handling for JSON data entry
+- Add Ability to Deselect
+- Add Ability to Select between with shift
+- Write tests
+- Style
+	- Exit Icon
+- Add handling for JSON data entry
 
  ## Known Issues
   - Cannot Discern between two images which share a value

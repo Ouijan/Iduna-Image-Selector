@@ -100,7 +100,7 @@ var iduna = (function () {
 		elements.wrap = $('<div class="idunaModal"></div>').appendTo("body");
 		elements.pane = $('<div class="idunaModal-pane"></div>').appendTo(elements.wrap);
 		elements.header = $('<div class="idunaModal-header"><h3>Select Images</h3></div>').appendTo(elements.pane);
-		elements.exit = $('<div class="idunaModal-exit">x</div>').appendTo(elements.header);
+		elements.exit = $('<div class="idunaModal-exit"><i class="fa fa-times"></i></div>').appendTo(elements.header);
 		elements.body = $('<div class="idunaModal-body">Body</div>').appendTo(elements.pane);
 		elements.footer = $('<div class="idunaModal-footer"></div>').appendTo(elements.pane);
 		elements.submit = $('<div class="btn btn-primary">Select</div>').appendTo(elements.footer);
@@ -166,7 +166,12 @@ var iduna = (function () {
 	};
 
 	Modal.prototype.selectSingle = function (value) {
-		this.selected = [value];
+		var found = _.indexOf(this.selected, value);
+		if (found >= 0) {
+			this.selected.splice(found, 1);
+		} else {
+			this.selected = [value];
+		}
 		this.updateSelected();
 	}
 

@@ -24,15 +24,19 @@
       z-index: 9999; }
       .idunaModal .idunaModal-pane .idunaModal-header h3 {
         padding: 0;
-        margin: 0; }
+        margin: 0;
+        line-height: 30px;
+        font-family: Arial, Helvetica, sans-serif;
+        color: #555555; }
       .idunaModal .idunaModal-pane .idunaModal-header .idunaModal-exit {
         position: absolute;
         right: 0;
         top: 0;
-        width: 30px;
-        height: 30px;
-        outline: 1px solid #cccccc;
-        cursor: pointer; }
+        padding: 8px;
+        cursor: pointer;
+        opacity: 0.6; }
+        .idunaModal .idunaModal-pane .idunaModal-header .idunaModal-exit:hover {
+          opacity: 0.4; }
     .idunaModal .idunaModal-pane .idunaModal-body {
       line-height: 0px;
       position: absolute;
@@ -40,15 +44,29 @@
       bottom: 50px;
       left: 0;
       right: 0;
+      padding: 6px 5px 9px;
       overflow: scroll;
-      z-index: 100; }
+      z-index: 100;
+      background-color: #222222; }
       .idunaModal .idunaModal-pane .idunaModal-body .idunaModal-image {
         display: inline-block;
-        width: 50%; }
+        width: 50%;
+        cursor: pointer;
+        opacity: 0.75; }
+        @media screen and (min-width: 500px) {
+          .idunaModal .idunaModal-pane .idunaModal-body .idunaModal-image {
+            width: 33.333%; } }
+        @media screen and (min-width: 768px) {
+          .idunaModal .idunaModal-pane .idunaModal-body .idunaModal-image {
+            width: 25%; } }
+        @media screen and (min-width: 992px) {
+          .idunaModal .idunaModal-pane .idunaModal-body .idunaModal-image {
+            width: 20%; } }
         .idunaModal .idunaModal-pane .idunaModal-body .idunaModal-image.selected {
-          outline: 2px solid #333;
+          outline: 1px solid #222;
           z-index: 9999;
-          position: relative; }
+          position: relative;
+          opacity: 1; }
     .idunaModal .idunaModal-pane .idunaModal-footer {
       border-top: 1px solid #cccccc;
       min-height: 30px;
@@ -72,5 +90,13 @@
 .hidden {
   display: none; }
 
-.idunaPreview-image {
-  height: 100px; }
+.idunaWrap {
+  margin-top: 1em; }
+
+.iduna-preview {
+  display: block;
+  min-height: 100px;
+  outline: 1px solid #111; }
+  .iduna-preview .idunaPreview-image {
+    width: 20%;
+    vertical-align: text-top; }
