@@ -152,20 +152,21 @@ var iduna = (function () {
 		_.each(this.currentSelector.data, function(data) {
 			var html = '<image class="idunaModal-image idunaModal-select" value="' + data.value + '" src="' + data.src + '"></image>';
 			var image = $(html).appendTo(this.elements.body);
+			data.element = image;
 		}, this);
 
 		$('.idunaModal-select').click( function (event) {
 			if (self.currentSelector.isMultiple && (event.metaKey || event.shiftKey)) {
-				self.selectMultiple($(event.target).attr('value'));
+				self.selectMultiple($(event.target).attr('value'), event);
 			} else {
-				self.selectSingle($(event.target).attr('value'));
+				self.selectSingle($(event.target).attr('value'), event);
 			}
 		});
 
 		this.updateSelected();
 	};
 
-	Modal.prototype.selectSingle = function (value) {
+	Modal.prototype.selectSingle = function (value, event) {
 		var found = _.indexOf(this.selected, value);
 		if (found >= 0) {
 			this.selected.splice(found, 1);
@@ -175,8 +176,13 @@ var iduna = (function () {
 		this.updateSelected();
 	}
 
-	Modal.prototype.selectMultiple = function (value) {
+	Modal.prototype.selectMultiple = function (value, event) {
 		var found = _.indexOf(this.selected, value);
+		// Check for Inbetween Modifier (default = shift)
+		if (event.shiftKey) {
+			console.log('shift click');
+		}
+
 		if (found >= 0) {
 			this.selected.splice(found, 1);
 		} else {
@@ -192,13 +198,13 @@ var iduna = (function () {
 		
 	Modal.prototype.updateSelected = function () {
 		_.each($(this.elements.body).children('.idunaModal-select'), function (element) {
-				
+
 				$(element).removeClass('selected');
 
 				// if element's value is in selected array
 				if (_.contains(this.selected, $(element).attr('value'))) {
 					$(element).addClass('selected');
-				}
+				} 
 		}, this);
 	};
 

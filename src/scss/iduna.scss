@@ -3,11 +3,15 @@
 
 .btn {
 	display: inline-block;
-	border: 1px solid #dddddd;
-	background-color: #efefef;
-	color: #333333;
-	padding: 10px;
+	background-color: #2575ed;
+	color: #ffffff;
+	padding: 10px 20px;
 	cursor: pointer;
+	text-align: center;
+
+	&:hover{
+		opacity: 0.9;
+	}
 }
 
 .hidden {
@@ -16,6 +20,8 @@
 
 .idunaWrap {
 	margin-top: 1em;
+	font-family: 'Helvetica Neue', Helvetica, Tahoma, sans-serif;
+	font-size: 1em;
 }
 
 .iduna-preview {

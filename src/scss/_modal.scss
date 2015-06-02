@@ -1,50 +1,49 @@
 // Modal Wrap
 .idunaModal {
+	font-family: 'Helvetica Neue', Helvetica, Tahoma, sans-serif;
+	font-size: 1em;
 	position: absolute;
 	top: 0;
 	left: 0;
 	right: 0;
 	background-color: rgba(0,0,0,0.5);
 	height: 100%;
+	padding: 0px 20px;
 
 	// Modal Pane
 	.idunaModal-pane {
-		margin: 20px;
-		outline: 1px solid #aaaaaa;
-		background-color: #efefef;
-		height: 80%;
+		margin: 20px auto;
+		background-color: #ffffff;
+		max-width: 960px;
+		height: 94%;
 		position: relative;
-		padding: 40px 0;
+		// padding: 40px 0;
+		box-shadow: 0 1px 70px rgba(0,0,0,0.5);
 
 		// Header
 		.idunaModal-header {
-			border-bottom: 1px solid #cccccc;
-			min-height: 30px;
+			height: 50px;
 			position: absolute;
 			top: 0;
 			left: 0;
 			right: 0;
 			background-color: inherit;
-			padding: 10px;
+			padding: 0 10px;
 			z-index: 9999;
-
-			h3 {
-				padding: 0;
-				margin: 0;
-				line-height: 30px;
-				font-family: Arial, Helvetica, sans-serif;
-				color: #555555;
-			}
-
+		 	
+		 	h3 {
+		 		line-height: 10px;
+		 	}
+			
 			.idunaModal-exit {
 				position: absolute;
 				right: 0;
 				top: 0;
 				padding: 8px;
 				cursor: pointer;
-				opacity: 0.6;
+				opacity: 1;
 				&:hover {
-					opacity: 0.4;
+					opacity: 0.75;
 				}
 			}
 		}
@@ -60,7 +59,7 @@
 			padding: 6px 5px 9px;
 			overflow: scroll;
 			z-index: 100;
-			background-color: #222222;
+			background-color: #333333;
 
 			.idunaModal-image {
 				display: inline-block;
@@ -77,27 +76,40 @@
 					width: 20%;
 				}
 
+				&:hover {
+					opacity: 0.8;
+				}
+
 				&.selected {
 					outline: 1px solid #222;
 					z-index: 9999;
 					position: relative;
 					opacity: 1;
+					&:hover {
+						opacity: 0.95;
+					}
 				}
 			}
 		}
 
 		// Footer
 		.idunaModal-footer {
-			border-top: 1px solid #cccccc;
-			min-height: 30px;
+			height: 50px;
 			position: absolute;
 			bottom: 0;
 			left: 0;
 			right: 0;
 			background-color: inherit;
-			text-align: right;
-			padding: 10px;
+			text-align: center;
 			z-index: 9999;
+			overflow: hidden;
+
+			.btn {
+				height: 20px;
+				width: 100%;
+				padding: 15px 0px;
+			}
+
 		}
 
 	}
