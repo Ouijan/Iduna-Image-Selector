@@ -6,6 +6,11 @@ var iduna = (function () {
 	iduna.selectors = [];
 	iduna.settings = {};
 
+	/**
+	 * initialise the Selectors
+	 * @param  {object} settings - assoc array of settigs
+	 * @return {iduna} this
+	 */
 	iduna.init = function (settings) { 
 		// Set settings
 		if (settings !== undefined) {
@@ -45,44 +50,44 @@ var iduna = (function () {
 		}
 
 		this.elements = renderSelector(this);
-		console.log(this);
 	};
 
 	/**
-	 * Show/Hide the selector
+	 * opens the modal fort his selector
+	 * @return {Selector} this
 	 */
 	Selector.prototype.open = function() {
 		iduna.modal.show(this);
+		return this;
 	};
 
-	Selector.prototype.select = function (selected) {
-		console.log('selected: ' + selected);
-		this.selected = selected;
+	/**
+	 * updates <select> options & preview container with the given selected (data)
+	 * @param  {array} data - array of selector option objects
+	 * @return {Selector} this
+	 */
+	Selector.prototype.select = function (data) {
+		this.data = data;
 
 		// Clear Selected
 		this.elements.preview.html('');
 		this.rawElement.children('option').removeAttr('selected');
 		
 		// Loop through each selected value
-		_.each(selected, function (value) {
-			
-			// Append to preview
-			_.each(this.data, function (data) {
-				if (data.value === value) {
-					var preview = '<img class="idunaPreview-image" src="' + data.src + '">';
-					this.elements.preview.append(preview);
-				}
-			}, this);
+		_.each(this.data, function (obj) {
+			obj.element.attr('selected', false);
+			if (obj.selected) {
 
-			// Select on rawElement <select>
-			_.each(this.rawElement.children('option'), function (option) {
-				if ($(option).attr('value') === value || 
-						($(option).attr('value') === undefined && $(option).html === value)) {
-					$(option).attr('selected', true);
-				}
-			}, this);
+				// Append to preview
+				var preview = '<img class="idunaPreview-image" src="' + obj.src + '">';
+				this.elements.preview.append(preview);
 
+				// select its option element
+				obj.element.attr('selected', true);
+			}
 		}, this);
+
+		return this;
 	};
 
 	/**
@@ -93,7 +98,7 @@ var iduna = (function () {
 		var self = this;
 		this.currentSelector = false;
 		this.isHidden = false;
-		this.selected = [];
+		this.lastSelected = false;
 
 		// Build DOM Elements
 		var elements = {};
@@ -127,21 +132,37 @@ var iduna = (function () {
 		this.hide();
 	};
 
+	/**
+	 * Hides the modal and removes it current selector
+	 * @return {Modal} this
+	 */
 	Modal.prototype.hide = function () {
 		$(this.elements.wrap).addClass('hidden');
 		this.isHidden = true;
 		this.currentSelector = false;
-		this.selected = [];
+
+		return this;
 	};
 
+	/**
+	 * Shows a Modal for the given selector
+	 * @param  {Selector} selector
+	 * @return {Modal} this
+	 */
 	Modal.prototype.show = function (selector) {
 		this.currentSelector = selector;
-		this.selected = selector.selected;
+		this.data = $.extend([], selector.data);
 		this.render();
 		$(this.elements.wrap).removeClass('hidden');
 		this.isHidden = false;
+
+		return this;
 	};
 
+	/**
+	 * Builds & appends the current modal's inner html
+	 * @return {Modal} this
+	 */
 	Modal.prototype.render = function () {
 		var self = this;
 
@@ -149,65 +170,108 @@ var iduna = (function () {
 		this.elements.body.html('');
 
 		// Build Inner Html
-		_.each(this.currentSelector.data, function(data) {
+		_.each(this.data, function(data) {
 			var html = '<image class="idunaModal-image idunaModal-select" value="' + data.value + '" src="' + data.src + '"></image>';
-			var image = $(html).appendTo(this.elements.body);
-			data.element = image;
+			data.modalElement = $(html).appendTo(this.elements.body);
 		}, this);
 
 		$('.idunaModal-select').click( function (event) {
 			if (self.currentSelector.isMultiple && (event.metaKey || event.shiftKey)) {
-				self.selectMultiple($(event.target).attr('value'), event);
+				self.selectMultiple(event);
 			} else {
-				self.selectSingle($(event.target).attr('value'), event);
+				self.selectSingle(event);
 			}
 		});
 
 		this.updateSelected();
+		return this;
 	};
 
-	Modal.prototype.selectSingle = function (value, event) {
-		var found = _.indexOf(this.selected, value);
-		if (found >= 0) {
-			this.selected.splice(found, 1);
-		} else {
-			this.selected = [value];
-		}
+	/**
+	 * Selects an image given the click event
+	 * @param  {event} event - click event
+	 * @return {Modal} this
+	 */
+	Modal.prototype.selectSingle = function (event) {
+		var multipleSelected = this.multipleSelected();
+		_.each(this.data, function (data, key) {
+
+			if ( $(event.target).is(data.modalElement) ) {
+				data.selected = !data.selected;
+				if (multipleSelected) {
+					data.selected = true;
+				}
+				this.lastSelected = data;
+			} else {
+				data.selected = false;
+			}
+
+		}, this);
+
 		this.updateSelected();
+		return this;
 	}
 
-	Modal.prototype.selectMultiple = function (value, event) {
-		var found = _.indexOf(this.selected, value);
-		// Check for Inbetween Modifier (default = shift)
-		if (event.shiftKey) {
-			console.log('shift click');
-		}
+	/**
+	 * Selects Multiple Images given the click event
+	 * @param  {event} event - click event
+	 * @return {Modal} this
+	 */
+	Modal.prototype.selectMultiple = function (event) {
+		_.each(this.data, function (data, key) {
 
-		if (found >= 0) {
-			this.selected.splice(found, 1);
-		} else {
-			this.selected.push(value);
-		}
+			if ( data.modalElement.is($(event.target)) ) {
+				data.selected = !data.selected;
+				this.lastSelected = data;
+			}
+
+		}, this);
+
 		this.updateSelected();
+		return this;
 	}
 
+	/**
+	 * Submit the modal's selected images and close the modal
+	 * @return {[type]} [description]
+	 */
 	Modal.prototype.select = function () {
-		this.currentSelector.select(this.selected);
+		this.currentSelector.select(this.data);
 		this.hide();
+
+		return this;
 	}
 		
+	/**
+	 * Updates the visuls of the modal (selected elements)
+	 * @return {Modal} this
+	 */
 	Modal.prototype.updateSelected = function () {
-		_.each($(this.elements.body).children('.idunaModal-select'), function (element) {
-
-				$(element).removeClass('selected');
-
-				// if element's value is in selected array
-				if (_.contains(this.selected, $(element).attr('value'))) {
-					$(element).addClass('selected');
-				} 
+		_.each(this.data, function (data) {
+			data.modalElement.removeClass('selected');
+			if (data.selected === true) {
+				data.modalElement.addClass('selected');
+			}
 		}, this);
+
+		return this;
 	};
 
+	/**
+	 * determines if multiple elements are selected
+	 * @return {boolean} true if more than one element is selected
+	 */
+	Modal.prototype.multipleSelected = function () {
+		var selectedCount = 0;
+		
+		_.each(this.data, function (data) {
+			if (data.selected) {
+				selectedCount ++;
+			}
+		}, this);
+
+		return (selectedCount > 1);
+	}
 
 	/**
 	 * Helper Functions
@@ -231,6 +295,7 @@ var iduna = (function () {
 				'value': value,
 				'label': html,
 				'src': src,
+				'element': $(option),
 			});
 		});
 

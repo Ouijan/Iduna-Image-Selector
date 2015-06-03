@@ -15,8 +15,10 @@ Comming Soon...
  - gulp test 			- Starts running Karma/Jasmine Tests
 
 ## To Do
-- Clicking on a selected item deselects it, then on multiple it should select just that one.
 - Add Ability to Select between with shift
+- Add Settings
+	- Multi Select Modifiers etc
+- Add type checking
 - Write tests
 - Style
 	- Exit Icon
