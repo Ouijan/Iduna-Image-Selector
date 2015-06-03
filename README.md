@@ -25,6 +25,7 @@ Comming Soon...
 	- Close button on bottom of modal
 	- Images as Background for consistant image sizing
 - Add handling for JSON data entry
+- Document how to use
 
  ## Known Issues
   - Cannot Discern between two images which share a value
