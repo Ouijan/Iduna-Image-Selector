@@ -22,6 +22,7 @@ Comming Soon...
 - Write tests
 - Style
 	- Exit Icon
+	- Close button on bottom of modal
 - Add handling for JSON data entry
 
  ## Known Issues
