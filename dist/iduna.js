@@ -171,8 +171,9 @@ var iduna = (function () {
 
 		// Build Inner Html
 		_.each(this.data, function(data) {
-			var html = '<image class="idunaModal-image idunaModal-select" value="' + data.value + '" src="' + data.src + '"></image>';
-			data.modalElement = $(html).appendTo(this.elements.body);
+			var wrap = $('<div class="idunaModal-imageWrap" value="'+data.value+'" src="'+data.src+'"></div>');
+			$('<div class="idunaModal-image idunaModal-select" style="background-image: url(\''+data.src+'\');"></div>').appendTo(wrap);			
+			data.modalElement = wrap.appendTo(this.elements.body);
 		}, this);
 
 		$('.idunaModal-select').click( function (event) {
@@ -194,9 +195,9 @@ var iduna = (function () {
 	 */
 	Modal.prototype.selectSingle = function (event) {
 		var multipleSelected = this.multipleSelected();
-		_.each(this.data, function (data, key) {
 
-			if ( $(event.target).is(data.modalElement) ) {
+		_.each(this.data, function (data, key) {
+			if ( data.modalElement.is( $(event.target).parent() ) ) {
 				data.selected = !data.selected;
 				if (multipleSelected) {
 					data.selected = true;
@@ -219,8 +220,7 @@ var iduna = (function () {
 	 */
 	Modal.prototype.selectMultiple = function (event) {
 		_.each(this.data, function (data, key) {
-
-			if ( data.modalElement.is($(event.target)) ) {
+			if ( data.modalElement.is($(event.target).parent()) ) {
 				data.selected = !data.selected;
 				this.lastSelected = data;
 			}
@@ -243,7 +243,7 @@ var iduna = (function () {
 	}
 		
 	/**
-	 * Updates the visuls of the modal (selected elements)
+	 * Updates the visuals of the modal (selected elements)
 	 * @return {Modal} this
 	 */
 	Modal.prototype.updateSelected = function () {

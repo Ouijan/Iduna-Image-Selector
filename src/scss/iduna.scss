@@ -8,6 +8,7 @@
 	padding: 10px 20px;
 	cursor: pointer;
 	text-align: center;
+	font-size: 0.9em;
 
 	&:hover{
 		opacity: 0.9;
@@ -27,7 +28,8 @@
 .iduna-preview {
 	display: block;
 	min-height: 100px;
-	outline: 1px solid #111;
+	background-color: #f6f6f6;
+	border: 3px solid #2575ed;
 
 	.idunaPreview-image {
 		width: 20%;

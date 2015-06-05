@@ -23,7 +23,6 @@ Comming Soon...
 - Style
 	- Exit Icon
 	- Close button on bottom of modal
-	- Images as Background for consistant image sizing
 - Add handling for JSON data entry
 - Document how to use
 

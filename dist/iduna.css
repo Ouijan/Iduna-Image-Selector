@@ -5,7 +5,7 @@
   top: 0;
   left: 0;
   right: 0;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.25);
   height: 100%;
   padding: 0px 20px; }
   .idunaModal .idunaModal-pane {
@@ -23,7 +23,8 @@
       right: 0;
       background-color: inherit;
       padding: 0 10px;
-      z-index: 9999; }
+      z-index: 9999;
+      box-shadow: 0px 5px 10px -5px #000000; }
       .idunaModal .idunaModal-pane .idunaModal-header h3 {
         line-height: 10px; }
       .idunaModal .idunaModal-pane .idunaModal-header .idunaModal-exit {
@@ -46,29 +47,36 @@
       overflow: scroll;
       z-index: 100;
       background-color: #333333; }
-      .idunaModal .idunaModal-pane .idunaModal-body .idunaModal-image {
-        display: inline-block;
+      .idunaModal .idunaModal-pane .idunaModal-body .idunaModal-imageWrap {
+        display: block;
         width: 50%;
+        float: left;
         cursor: pointer;
         opacity: 0.75; }
         @media screen and (min-width: 500px) {
-          .idunaModal .idunaModal-pane .idunaModal-body .idunaModal-image {
+          .idunaModal .idunaModal-pane .idunaModal-body .idunaModal-imageWrap {
             width: 33.333%; } }
         @media screen and (min-width: 768px) {
-          .idunaModal .idunaModal-pane .idunaModal-body .idunaModal-image {
+          .idunaModal .idunaModal-pane .idunaModal-body .idunaModal-imageWrap {
             width: 25%; } }
         @media screen and (min-width: 992px) {
-          .idunaModal .idunaModal-pane .idunaModal-body .idunaModal-image {
+          .idunaModal .idunaModal-pane .idunaModal-body .idunaModal-imageWrap {
             width: 20%; } }
-        .idunaModal .idunaModal-pane .idunaModal-body .idunaModal-image:hover {
+        .idunaModal .idunaModal-pane .idunaModal-body .idunaModal-imageWrap:hover {
           opacity: 0.8; }
-        .idunaModal .idunaModal-pane .idunaModal-body .idunaModal-image.selected {
-          outline: 1px solid #222;
+        .idunaModal .idunaModal-pane .idunaModal-body .idunaModal-imageWrap.selected {
+          outline: 1px solid #333333;
           z-index: 9999;
           position: relative;
           opacity: 1; }
-          .idunaModal .idunaModal-pane .idunaModal-body .idunaModal-image.selected:hover {
+          .idunaModal .idunaModal-pane .idunaModal-body .idunaModal-imageWrap.selected:hover {
             opacity: 0.95; }
+        .idunaModal .idunaModal-pane .idunaModal-body .idunaModal-imageWrap .idunaModal-image {
+          width: 100%;
+          padding-top: 100%;
+          background-position: center;
+          background-repeat: no-repeat;
+          background-size: cover; }
     .idunaModal .idunaModal-pane .idunaModal-footer {
       height: 50px;
       position: absolute;
@@ -78,7 +86,8 @@
       background-color: inherit;
       text-align: center;
       z-index: 9999;
-      overflow: hidden; }
+      overflow: hidden;
+      box-shadow: 0px -5px 10px -5px #000000; }
       .idunaModal .idunaModal-pane .idunaModal-footer .btn {
         height: 20px;
         width: 100%;
@@ -90,7 +99,8 @@
   color: #ffffff;
   padding: 10px 20px;
   cursor: pointer;
-  text-align: center; }
+  text-align: center;
+  font-size: 0.9em; }
   .btn:hover {
     opacity: 0.9; }
 
@@ -105,7 +115,8 @@
 .iduna-preview {
   display: block;
   min-height: 100px;
-  outline: 1px solid #111; }
+  background-color: #f6f6f6;
+  border: 3px solid #2575ed; }
   .iduna-preview .idunaPreview-image {
     width: 20%;
     vertical-align: text-top; }
